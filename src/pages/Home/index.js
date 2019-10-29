@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 24,
-    color: '#f8eeb4',
+    color: '#fff',
     marginRight: 10,
   },
 });
@@ -45,20 +45,13 @@ export default function Home({ navigation }) {
           onPress={() => navigation.navigate('IMC')}
         >
           <Text style={styles.editedtext}>Calcular IMC</Text>
-          <Icon name="chevron-circle-right" size={24} color="#f8eeb4" />
+          <Icon name="chevron-circle-right" size={24} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.card} onPress={() => {}}>
           <Text style={styles.editedtext}>Calcular Tdee</Text>
-          <Icon name="chevron-circle-right" size={24} color="#f8eeb4" />
+          <Icon name="chevron-circle-right" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
     </Background>
   );
 }
-
-// Dashboard.navigationOptions = {
-//   tabBarLabel: 'Home',
-//   tabBarIcon: ({ tintColor }) => (
-//     <Icon name="event" size={20} color={tintColor} />
-//   ),
-// };

@@ -10,7 +10,7 @@ import History from '~/pages/History';
 
 const mainNavigation = createBottomTabNavigator(
   {
-    Dashboard: {
+    New: {
       screen: createStackNavigator(
         {
           Home,
@@ -19,7 +19,7 @@ const mainNavigation = createBottomTabNavigator(
         {
           defaultNavigationOptions: {
             headerTransparent: true,
-            headerTintColor: '#f8eeb4',
+            headerTintColor: '#fff',
             headerLeftContainerStyle: {
               marginLeft: 20,
             },
@@ -29,7 +29,9 @@ const mainNavigation = createBottomTabNavigator(
       navigationOptions: {
         tabBarVisible: true,
         tabBarLabel: 'Home',
-        tabBarIcon: <Icon name="home" size={20} color="#f8eeb4" />,
+        tabBarIcon: (
+          <Icon name="home" size={20} color="rgba(255, 255, 255, 0.6)" />
+        ),
       },
     },
     History: { screen: History },
@@ -38,7 +40,7 @@ const mainNavigation = createBottomTabNavigator(
     resetOnBlur: true,
     tabBarOptions: {
       keyboardHidesTabBar: true,
-      activeTintColor: '#f8eeb4',
+      activeTintColor: '#FFF',
       inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
       style: {
         backgroundColor: 'rgba(0,0,0,0.9)',

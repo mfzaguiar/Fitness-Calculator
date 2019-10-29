@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { Dimensions } from 'react-native';
+
 import Slider from '@react-native-community/slider';
+
+import Header from '~/assets/header.svg';
 
 import Background from '~/components/Background';
 
@@ -15,6 +19,8 @@ import {
   Label,
   TextSlider,
 } from './styles';
+
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 const DataIMC = [
   { text: 'Muito abaixo do preso', color: '#d99795' },
@@ -64,13 +70,13 @@ export default function IMC() {
 
   return (
     <Background>
+      <Header width={screenWidth} height={155} />
       <Container>
         <Form>
-          {/* <FormInput icon="assignment" placeholder="Digite sua idade" /> */}
           <Label>Altura:</Label>
           <Slider
             style={{ height: 40 }}
-            thumbTintColor="#f8eeb4"
+            thumbTintColor="#fff"
             minimumValue={40}
             maximumValue={220}
             value={40}
@@ -84,7 +90,7 @@ export default function IMC() {
           <Label>Peso:</Label>
           <Slider
             style={{ height: 40 }}
-            thumbTintColor="#f8eeb4"
+            thumbTintColor="#fff"
             minimumValue={30}
             maximumValue={200}
             value={30}
@@ -136,9 +142,10 @@ export default function IMC() {
 }
 
 IMC.navigationOptions = () => ({
-  title: 'Calcular IMC',
-  headerStyle: {
-    headerTransparent: false,
-    // backgroundColor: '#3a3636',
-  },
+  header: null,
+  // title: 'Calcular IMC',
+  // headerStyle: {
+  //   headerTransparent: true,
+  //   backgroundColor: 'rgba(0,0,0,0.5)',
+  // },
 });
