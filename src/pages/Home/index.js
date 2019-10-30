@@ -5,53 +5,80 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  ImageBackground,
+  SafeAreaView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Background from '~/components/Background';
-// import { Container } from './styles';
+import Header from '~/assets/headerapp.svg';
+import BgButton from '~/assets/bg-Button.jpg';
+import BgButton2 from '~/assets/bg-Belly.jpg';
 
 const styles = StyleSheet.create({
   cardWrapper: {
     flex: 1,
     flexDirection: 'column',
     padding: 25,
+    marginTop: 10,
   },
   card: {
-    height: 70,
-    marginBottom: 10,
+    height: 150,
+    marginBottom: 15,
+  },
+  editedtext: {
+    fontWeight: 'bold',
+    fontSize: 28,
+    color: '#fff',
+  },
+  img: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-  },
-  editedtext: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-    color: '#fff',
-    marginRight: 10,
+    height: '100%',
+    width: '100%',
   },
 });
 
 export default function Home({ navigation }) {
   return (
     <Background>
-      <StatusBar barStyle="light-content" backgroundColor="#3A3636" />
-      <View style={styles.cardWrapper}>
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => navigation.navigate('IMC')}
-        >
-          <Text style={styles.editedtext}>Calcular IMC</Text>
-          <Icon name="chevron-circle-right" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card} onPress={() => {}}>
-          <Text style={styles.editedtext}>Calcular Tdee</Text>
-          <Icon name="chevron-circle-right" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
+      <SafeAreaView>
+        <Header />
+        <StatusBar barStyle="light-content" backgroundColor="#0b0f1b" />
+        <View style={styles.cardWrapper}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Tdee')}
+          >
+            <ImageBackground
+              style={styles.img}
+              imageStyle={{
+                borderRadius: 15,
+                resizeMode: 'cover',
+              }}
+              source={BgButton}
+            >
+              <Text style={styles.editedtext}>Calcular TDEE</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Tdee')}
+          >
+            <ImageBackground
+              style={styles.img}
+              imageStyle={{
+                borderRadius: 15,
+                resizeMode: 'cover',
+              }}
+              source={BgButton2}
+            >
+              <Text style={styles.editedtext}>Histórico</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </Background>
   );
 }

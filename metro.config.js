@@ -4,7 +4,7 @@
  *
  * @format
  */
-const { getDefaultConfig } = import('metro-config');
+const { getDefaultConfig } = require('metro-config'); //eslint-disable-line
 
 module.exports = (async () => {
   const {
