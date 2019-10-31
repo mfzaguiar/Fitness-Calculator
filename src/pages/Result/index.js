@@ -1,12 +1,15 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Background from '~/components/Background';
-import { Header } from './styles';
+import { Container, Header, Box, StyledText, SmallText } from './styles';
 
 export default function Result({ navigation }) {
+  const TMB = navigation.getParam('TMB');
+  const TDEE = navigation.getParam('TDEE');
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Background>
@@ -20,7 +23,24 @@ export default function Result({ navigation }) {
             />
           </TouchableOpacity>
         </Header>
-        <Text style={{ color: '#fff' }}>Olá RESULTADO 123</Text>
+        <Container>
+          <Box>
+            <TouchableOpacity onPress={() => navigation.navigate('Help')}>
+              <Icon name="info" size={20} style={{ margin: 5 }} color="#fff" />
+            </TouchableOpacity>
+            <SmallText>TMB</SmallText>
+            <StyledText>{TMB}</StyledText>
+            <SmallText>calorias</SmallText>
+          </Box>
+          <Box>
+            <TouchableOpacity onPress={() => navigation.navigate('Help')}>
+              <Icon name="info" size={20} style={{ margin: 5 }} color="#fff" />
+            </TouchableOpacity>
+            <SmallText>TDEE</SmallText>
+            <StyledText>{TDEE}</StyledText>
+            <SmallText>calorias</SmallText>
+          </Box>
+        </Container>
       </Background>
     </SafeAreaView>
   );

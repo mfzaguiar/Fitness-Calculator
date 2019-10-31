@@ -4,14 +4,21 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Background from '~/components/Background';
-import { Container, Header, StyledText } from './styles';
+import {
+  Container,
+  Header,
+  Title,
+  SubTitle,
+  StyledText,
+  ListText,
+} from './styles';
 
 export default function Help({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Background>
         <Header>
-          <TouchableOpacity onPress={() => navigation.navigate('Tdee')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon
               name="arrow-back"
               size={28}
@@ -21,23 +28,64 @@ export default function Help({ navigation }) {
           </TouchableOpacity>
         </Header>
         <Container>
+          <Title>O que é TDEE ?</Title>
           <StyledText>
-            Uma forma mais precisa de calcular seu Gasto energético diário é
-            determinar sua taxa metabólica basal(TMB) usando sua altura, peso,
-            idade e genero, então multiplicar a taxa metabólica basal(TMB) pelo
-            nivel de atividade diária, obtendo então o Gasto energético diário.
-            Taxa metabólica basal (TMB) é o número de calorias que seu corpo
-            requer para realizar funções corporais normais, não incluindo
-            atividade. Estas funções incluem coisas como manter o coração
-            batendo, inalar e expirar o ar e processar oxigênio, digerir
-            alimentos, produção de novas células sanguíneas, manutenção da
-            temperatura corporal e outras processos os processos básicos da
-            vida. A TMB pode variar de pessoa para pessoa, dependendo sobre
-            fatores genéticos e ambientais. A TMB está no seu nível mais baixo
-            enquanto estiver dormindo e aumenta um pouco quando você come para
-            digerir os alimentos. Ter uma porcentagem maior de massa magra
-            (músculo) também aumenta sua TMB, porque o músculo usa mais energia
-            que a gordura.
+            TDEE significa Gasto energético diário. É o número total de calorias
+            que você queima durante o dia. Seu TDEE é determinado por quatro
+            fatores principais:
+          </StyledText>
+          <ListText>- Taxa metabólica basal</ListText>
+          <ListText>- Efeito Térmico dos Alimentos</ListText>
+          <ListText>- Atividade termogênica sem exercício</ListText>
+          <ListText>- Efeito Térmico da Atividade (Exercício)</ListText>
+          <SubTitle>Taxa metabólica basal</SubTitle>
+          <StyledText>
+            A taxa metabólica basal refere-se ao número de calorias que seu
+            corpo queima todos os dias para mantê-lo vivo. A TMB não inclui
+            atividade física, processo de digestão ou coisas como caminhar de
+            uma sala para outra. Basicamente, TMB é o número de calorias que seu
+            corpo gastaria em um período de 24 horas se tudo o que você fez foi
+            ficar deitado na cama o dia inteiro. Este é o mínimo absoluto de
+            calorias necessárias para garantir sua sobrevivência.
+          </StyledText>
+          <SubTitle>Efeito Térmico dos Alimentos</SubTitle>
+          <StyledText>
+            Quando comemos alimentos, nosso corpo deve gastar energia para
+            digerir os alimentos que ingerimos. Esse gasto de energia é
+            conhecido como Efeito Térmico dos Alimentos e envolve a decomposição
+            de proteínas, carboidratos e gorduras que você consome nos
+            aminoácidos individuais, açúcares e ácidos graxos que são então
+            absorvidos e usados pelo corpo para transportar todos os seus
+            processos.
+          </StyledText>
+          <SubTitle>Atividade termogênica sem exercício</SubTitle>
+          <StyledText>
+            A termogênese das atividades não relacionadas ao exercício (NEAT)
+            constitui o número de calorias gastas durante o movimento diário que
+            não é classificado como exercício estruturado. O NEAT inclui
+            atividades como passear com o cachorro, mudar de um cômodo para
+            outro ou subir as escadas do seu escritório.
+          </StyledText>
+          <SubTitle>Efeito Térmico da Atividade</SubTitle>
+          <StyledText>
+            Efeito Térmico da Atividade é o número de calorias queimadas como
+            resultado do exercício (ou seja, cardio em estado estacionário,
+            treinamento de resistência, HIIT, sprints, CrossFit, etc.).
+            Semelhante ao NEAT, o efeito térmico do exercício é altamente
+            variável de uma pessoa para outra ou mesmo de um dia para outro para
+            a mesma pessoa, pois a intensidade do treinamento, a duração do
+            treino e a frequência do treinamento afetam seu efeito térmico
+            semanal da atividade.
+          </StyledText>
+          <Title>Referência</Title>
+          <StyledText>
+            Artigo - What is My TDEE (Total Daily Energy Expenditure) Site:
+            www.steelfitusa.com
+          </StyledText>
+          <StyledText>
+            Tappy, L. (1996). Thermic effect of food and sympathetic nervous
+            system activity in humans. Reproduction, Nutrition, Development,
+            36(4), 391–397. http://www.ncbi.nlm.nih.gov/pubmed/8878356/
           </StyledText>
         </Container>
       </Background>
