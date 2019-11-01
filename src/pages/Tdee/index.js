@@ -14,7 +14,6 @@ import {
   WrapperItems,
   Form,
   CalculateButton,
-  TextIMC,
   Label,
   TextSlider,
   SmallText,
@@ -56,38 +55,9 @@ const Activity = [
 export default function Tdee({ navigation }) {
   const [activity, setActivity] = useState(0);
   const [gender, setGender] = useState(0);
-  const [result, setResult] = useState('');
-  const [resultBmr, setResultBmr] = useState('');
   const [age, setAge] = useState(15);
   const [height, setHeight] = useState(130);
   const [weight, setWeight] = useState(40);
-
-  function handleCalculate() {
-    if (gender === 0) {
-      setResult(
-        (
-          Activity[activity].factor *
-          (66 + 13.7 * weight + 5 * height - 6.8 * age)
-        ).toFixed()
-      );
-
-      setResultBmr((66 + 13.7 * weight + 5 * height - 6.8 * age).toFixed());
-    } else {
-      setResult(
-        (
-          Activity[activity].factor *
-          (655 + 9.6 * weight + 1.8 * height - 4.7 * age)
-        ).toFixed()
-      );
-
-      setResultBmr((655 + 9.6 * weight + 1.8 * height - 4.7 * age).toFixed());
-    }
-
-    // navigation.navigate('Result', {
-    //   TDEE: result,
-    //   TMB: resultBmr,
-    // });
-  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -194,20 +164,23 @@ export default function Tdee({ navigation }) {
               <SmallText>{Activity[activity].description}</SmallText>
             </WrapperItems>
 
-            <CalculateButton onPress={() => handleCalculate()}>
+            {/* <CalculateButton onPress={() => handleCalculate()}>
               Calcular
             </CalculateButton>
             <TextIMC>TMB: {resultBmr} calorias</TextIMC>
-            <TextIMC>TDEE: {result} calorias</TextIMC>
+            <TextIMC>TDEE: {result} calorias</TextIMC> */}
             <CalculateButton
               onPress={() =>
                 navigation.navigate('Result', {
-                  TDEE: result,
-                  TMB: resultBmr,
+                  gender,
+                  age,
+                  height,
+                  weight,
+                  factor: Activity[activity].factor,
                 })
               }
             >
-              Calcular Macros
+              Calcular
             </CalculateButton>
           </Form>
         </Container>

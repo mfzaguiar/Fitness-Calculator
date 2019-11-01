@@ -30,20 +30,20 @@ export default function Help({ navigation }) {
         <Container>
           <Title>O que é TDEE ?</Title>
           <StyledText>
-            TDEE significa Gasto energético diário. É o número total de calorias
-            que você queima durante o dia. Seu TDEE é determinado por quatro
-            fatores principais:
+            Total Daily Energy Expenditure(TDEE) significa Gasto energético
+            diário. É o número total de calorias que você queima durante o dia.
+            Seu TDEE é determinado por quatro fatores principais:
           </StyledText>
           <ListText>- Taxa metabólica basal</ListText>
           <ListText>- Efeito Térmico dos Alimentos</ListText>
           <ListText>- Atividade termogênica sem exercício</ListText>
           <ListText>- Efeito Térmico da Atividade (Exercício)</ListText>
-          <SubTitle>Taxa metabólica basal</SubTitle>
+          <SubTitle>Taxa metabólica basal (BMR)</SubTitle>
           <StyledText>
             A taxa metabólica basal refere-se ao número de calorias que seu
-            corpo queima todos os dias para mantê-lo vivo. A TMB não inclui
+            corpo queima todos os dias para mantê-lo vivo. A BMR não inclui
             atividade física, processo de digestão ou coisas como caminhar de
-            uma sala para outra. Basicamente, TMB é o número de calorias que seu
+            uma sala para outra. Basicamente, BMR é o número de calorias que seu
             corpo gastaria em um período de 24 horas se tudo o que você fez foi
             ficar deitado na cama o dia inteiro. Este é o mínimo absoluto de
             calorias necessárias para garantir sua sobrevivência.

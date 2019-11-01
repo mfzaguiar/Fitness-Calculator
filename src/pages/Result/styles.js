@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
+import { ImageBackground } from 'react-native';
 
 export const Container = styled.View`
-  flex: 1;
   flex-direction: row;
+  margin: 0 10px 0 10px;
 `;
 
 export const Header = styled.View`
@@ -27,6 +28,13 @@ export const Box = styled.View`
   border-radius: 30px;
 `;
 
+export const WrapperMacros = styled.View`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px 0 10px;
+`;
+
 export const StyledText = styled.Text`
   color: #fff;
   font-weight: bold;
@@ -35,6 +43,22 @@ export const StyledText = styled.Text`
 
 export const SmallText = styled.Text`
   color: #fff;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 18px;
+`;
+
+export const Label = styled.Text`
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 10px;
+  text-align: center;
+`;
+
+export const ImageBg = styled(ImageBackground)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 `;
