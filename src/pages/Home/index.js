@@ -7,27 +7,42 @@ import {
   StatusBar,
   ImageBackground,
   SafeAreaView,
+  Image,
 } from 'react-native';
 
+import BackgroundTemplate from '~/assets/template/bg-final.png';
 import Background from '~/components/Background';
-import Header from '~/assets/headerapp.svg';
-import BgButton from '~/assets/bg-Button.jpg';
-import BgButton2 from '~/assets/bg-Belly.jpg';
+import Kcal from '~/assets/icons/calories.png';
+import Book from '~/assets/icons/open-book.png';
+import Water from '~/assets/icons/water.png';
 
 const styles = StyleSheet.create({
   cardWrapper: {
     flex: 1,
     flexDirection: 'column',
     padding: 25,
-    marginTop: 10,
+    marginTop: 100,
+  },
+  cardPhrases: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 20,
+    borderRadius: 20,
+    height: 200,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   card: {
-    height: 150,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 120,
     marginBottom: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.76)',
+    borderRadius: 10,
   },
   editedtext: {
     fontWeight: 'bold',
-    fontSize: 28,
+    fontSize: 26,
     color: '#fff',
   },
   img: {
@@ -38,47 +53,61 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
+  HeaderTitle: {
+    lineHeight: 45,
+    fontSize: 26,
+    color: '#fff',
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });
+
+const phrases = [
+  { text: 'Do something today that your future self will thank you for.' },
+  {
+    text: 'The pain you fell today will be de the strenght you fell tomorrow.',
+  },
+  { text: 'Don`t limit your challenges, challenge your limits.' },
+];
 
 export default function Home({ navigation }) {
   return (
     <Background>
-      <SafeAreaView>
-        <Header />
-        <StatusBar barStyle="light-content" backgroundColor="#0b0f1b" />
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => navigation.navigate('Tdee')}
-          >
-            <ImageBackground
-              style={styles.img}
-              imageStyle={{
-                borderRadius: 15,
-                resizeMode: 'cover',
-              }}
-              source={BgButton}
+      <ImageBackground
+        style={{ flex: 1, display: 'flex' }}
+        source={BackgroundTemplate}
+      >
+        <SafeAreaView>
+          <StatusBar barStyle="light-content" backgroundColor="#0b0f1b" />
+          <View style={styles.cardPhrases}>
+            <Text style={styles.HeaderTitle}>{phrases[0].text}</Text>
+          </View>
+          <View style={styles.cardWrapper}>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate('Tdee')}
             >
+              <Image source={Kcal} />
               <Text style={styles.editedtext}>Calcular TDEE</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => navigation.navigate('Tdee')}
-          >
-            <ImageBackground
-              style={styles.img}
-              imageStyle={{
-                borderRadius: 15,
-                resizeMode: 'cover',
-              }}
-              source={BgButton2}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate('Water')}
             >
+              <Image source={Water} />
+              <Text style={styles.editedtext}>Calcular Quantidade Água</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate('Historic')}
+            >
+              <Image source={Book} />
               <Text style={styles.editedtext}>Histórico</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     </Background>
   );
 }

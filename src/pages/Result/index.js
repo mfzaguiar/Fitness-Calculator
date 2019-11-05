@@ -11,22 +11,26 @@ import {
   Box,
   StyledText,
   SmallText,
+  ContainerMacros,
   WrapperMacros,
+  WrapperItems,
   Label,
-  ImageBg,
+  ImageStyled,
+  Title,
 } from './styles';
 
-import BgCarbs from '~/assets/bg-Carb.jpg';
-import BgProtein from '~/assets/bg-Protein.jpg';
-import BgFat from '~/assets/bg-Fat.jpg';
+import Rice from '~/assets/icons/rice.png';
+import Avocado from '~/assets/icons/avocado.png';
+import Steak from '~/assets/icons/steak.png';
 
 export default function Result({ navigation }) {
   const [resultTdee, setResultTdee] = useState('');
   const [resultBmr, setResultBmr] = useState('');
   const [objective, setObjective] = useState(0);
-  const [carb, setCarb] = useState(0);
-  const [protein, setProtein] = useState(0);
-  const [fat, setFat] = useState(0);
+
+  const [carb, setCarb] = useState([]);
+  const [protein, setProtein] = useState([]);
+  const [fat, setFat] = useState([]);
 
   const gender = navigation.getParam('gender');
   const age = navigation.getParam('age');
@@ -37,28 +41,82 @@ export default function Result({ navigation }) {
   useEffect(() => {
     function handleMacros() {
       if (objective === 0) {
-        const newTdee = resultTdee - resultTdee * 0.15;
-        const newFat = weight * 0.67 * 9;
-        const newProtein = newTdee * 0.3;
-        const newCarb = (newTdee - (newFat + newProtein)) / 4;
-        setProtein((newProtein / 4).toFixed());
-        setFat((newFat / 9).toFixed());
-        setCarb(newCarb.toFixed());
+        const newTdee = parseFloat(resultTdee) - 500;
+        //LOWCARB 20/40/40
+        //MODERATE CARB 35/35/30
+        //HIGH CARB 50/30/20
+
+        const Vcarb = [];
+        const Vprotein = [];
+        const Vfat = [];
+        Vcarb.push(
+          ((newTdee * 0.2) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.5) / 4).toFixed()
+        );
+        Vprotein.push(
+          ((newTdee * 0.4) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.3) / 4).toFixed()
+        );
+        Vfat.push(
+          ((newTdee * 0.4) / 9).toFixed(),
+          ((newTdee * 0.3) / 9).toFixed(),
+          ((newTdee * 0.2) / 9).toFixed()
+        );
+
+        setProtein(Vprotein);
+        setFat(Vfat);
+        setCarb(Vcarb);
       } else if (objective === 1) {
-        const newFat = weight * 0.67 * 9;
-        const newProtein = resultTdee * 0.25;
-        const newCarb = (resultTdee - (newFat + newProtein)) / 4;
-        setProtein((newProtein / 4).toFixed());
-        setFat((newFat / 9).toFixed());
-        setCarb(newCarb.toFixed());
+        const newTdee = parseFloat(resultTdee);
+
+        const Vcarb = [];
+        const Vprotein = [];
+        const Vfat = [];
+        Vcarb.push(
+          ((newTdee * 0.2) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.5) / 4).toFixed()
+        );
+        Vprotein.push(
+          ((newTdee * 0.4) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.3) / 4).toFixed()
+        );
+        Vfat.push(
+          ((newTdee * 0.4) / 9).toFixed(),
+          ((newTdee * 0.3) / 9).toFixed(),
+          ((newTdee * 0.2) / 9).toFixed()
+        );
+
+        setProtein(Vprotein);
+        setFat(Vfat);
+        setCarb(Vcarb);
       } else {
-        const newTdee = resultTdee * 1.07;
-        const newFat = weight * 0.67 * 9;
-        const newProtein = newTdee * 0.25;
-        const newCarb = (newTdee - (newFat + newProtein)) / 4;
-        setProtein((newProtein / 4).toFixed());
-        setFat((newFat / 9).toFixed());
-        setCarb(newCarb.toFixed());
+        const newTdee = parseFloat(resultTdee) + 500;
+        const Vcarb = [];
+        const Vprotein = [];
+        const Vfat = [];
+        Vcarb.push(
+          ((newTdee * 0.2) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.5) / 4).toFixed()
+        );
+        Vprotein.push(
+          ((newTdee * 0.4) / 4).toFixed(),
+          ((newTdee * 0.35) / 4).toFixed(),
+          ((newTdee * 0.3) / 4).toFixed()
+        );
+        Vfat.push(
+          ((newTdee * 0.4) / 9).toFixed(),
+          ((newTdee * 0.3) / 9).toFixed(),
+          ((newTdee * 0.2) / 9).toFixed()
+        );
+
+        setProtein(Vprotein);
+        setFat(Vfat);
+        setCarb(Vcarb);
       }
     }
 
@@ -122,7 +180,7 @@ export default function Result({ navigation }) {
             <SmallText>calorias</SmallText>
           </Box>
         </Container>
-        <WrapperMacros>
+        <ContainerMacros>
           <Label>Objetivo ?</Label>
           <SwitchSelector
             style={{
@@ -146,43 +204,57 @@ export default function Result({ navigation }) {
               { label: 'Ganhar Peso', value: 2 },
             ]}
           />
-          <Box>
-            <ImageBg
-              source={BgCarbs}
-              imageStyle={{
-                borderRadius: 30,
-                opacity: 0.5,
-              }}
-            >
-              <StyledText>Carboidratos</StyledText>
-              <SmallText>{carb} g</SmallText>
-            </ImageBg>
-          </Box>
-          <Box>
-            <ImageBg
-              source={BgProtein}
-              imageStyle={{
-                borderRadius: 30,
-                opacity: 0.5,
-              }}
-            >
-              <StyledText>Proteina</StyledText>
-              <SmallText>{protein} g</SmallText>
-            </ImageBg>
-          </Box>
-          <Box>
-            <ImageBg
-              source={BgFat}
-              imageStyle={{
-                borderRadius: 30,
-                opacity: 0.5,
-              }}
-            >
-              <StyledText>Gordura</StyledText>
-              <SmallText>{fat} g</SmallText>
-            </ImageBg>
-          </Box>
-        </WrapperMacros>
+          <WrapperMacros>
+            <WrapperItems>
+              <Box>
+                <Title>Low Carb</Title>
+                <ImageStyled source={Rice} />
+                <StyledText>Carboidratos</StyledText>
+                <SmallText>{carb[0]} g</SmallText>
+
+                <ImageStyled source={Steak} />
+                <StyledText>Proteina</StyledText>
+                <SmallText>{protein[0]} g</SmallText>
+
+                <ImageStyled source={Avocado} />
+                <StyledText>Gordura</StyledText>
+                <SmallText>{fat[0]} g</SmallText>
+              </Box>
+            </WrapperItems>
+            <WrapperItems>
+              <Box>
+                <Title>Carb Moderado</Title>
+                <ImageStyled source={Rice} />
+                <StyledText>Carboidratos</StyledText>
+                <SmallText>{carb[1]} g</SmallText>
+
+                <ImageStyled source={Steak} />
+                <StyledText>Proteina</StyledText>
+                <SmallText>{protein[1]} g</SmallText>
+
+                <ImageStyled source={Avocado} />
+                <StyledText>Gordura</StyledText>
+                <SmallText>{fat[1]} g</SmallText>
+              </Box>
+            </WrapperItems>
+            <WrapperItems>
+              <Box>
+                <Title>Alto Carb</Title>
+                <ImageStyled source={Rice} />
+                <StyledText>Carboidratos</StyledText>
+                <SmallText>{carb[2]} g</SmallText>
+
+                <ImageStyled source={Steak} />
+                <StyledText>Proteina</StyledText>
+                <SmallText>{protein[2]} g</SmallText>
+
+                <ImageStyled source={Avocado} />
+                <StyledText>Gordura</StyledText>
+                <SmallText>{fat[2]} g</SmallText>
+              </Box>
+            </WrapperItems>
+          </WrapperMacros>
+        </ContainerMacros>
       </Background>
     </SafeAreaView>
   );

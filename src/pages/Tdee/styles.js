@@ -8,7 +8,7 @@ export const Container = styled.View`
   flex-direction: column;
 `;
 
-export const Form = styled.View`
+export const Form = styled.ScrollView`
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -24,6 +24,8 @@ export const FormInput = styled(Input)`
 
 export const CalculateButton = styled(Button)`
   margin-top: 15px;
+  background: rgba(0, 0, 0, 0.76);
+  height: 50px;
 `;
 
 export const FinalIMC = styled.Text`
@@ -85,7 +87,7 @@ export const SmallText = styled.Text`
 
 export const Header = styled.View`
   display: flex;
-  background-color: #6d6e71;
+  background-color: rgba(0, 0, 0, 0.76);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

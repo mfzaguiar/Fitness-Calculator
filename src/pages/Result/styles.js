@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { ImageBackground } from 'react-native';
+import { Image } from 'react-native';
 
 export const Container = styled.View`
   flex-direction: row;
@@ -8,7 +8,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   display: flex;
-  background-color: #6d6e71;
+  background-color: rgba(0, 0, 0, 0.76);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -22,23 +22,36 @@ export const Box = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.76);
   margin: 10px;
   height: 150px;
+  width: 100px;
   border-radius: 30px;
 `;
 
-export const WrapperMacros = styled.View`
+export const ContainerMacros = styled.View`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 0 10px 0 10px;
+  margin: 0 5px 0 5px;
+`;
+export const WrapperMacros = styled.View`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const WrapperItems = styled.View`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StyledText = styled.Text`
   color: #fff;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 15px;
 `;
 
 export const SmallText = styled.Text`
@@ -51,14 +64,19 @@ export const Label = styled.Text`
   font-size: 18px;
   color: #fff;
   font-weight: bold;
-  margin-left: 10px;
   text-align: center;
 `;
 
-export const ImageBg = styled(ImageBackground)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+export const Title = styled.Text`
+  top: -45px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const ImageStyled = styled(Image)`
+  height: 40px;
+  width: 40px;
+  margin: 10px 0;
 `;

@@ -29,19 +29,19 @@ const Activity = [
   {
     label: 'Leve',
     value: '1',
-    description: 'Exercício leve, 1-3 vezes na semana',
+    description: 'Exercício leve, 1/3 vezes na semana',
     factor: 1.375,
   },
   {
     label: 'Moderada',
     value: '2',
-    description: 'Exercício moderado, 4-5 vezes na semana',
+    description: 'Exercício moderado, 4/5 vezes na semana',
     factor: 1.55,
   },
   {
     label: 'Ativo',
     value: '3',
-    description: 'Exercício pesado, 6-7 vezes na semana',
+    description: 'Exercício pesado, 6/7 vezes na semana',
     factor: 1.725,
   },
   {
@@ -102,6 +102,7 @@ export default function Tdee({ navigation }) {
 
             <WrapperItems>
               <Label>Idade:</Label>
+              <TextSlider>{age} anos</TextSlider>
               <Slider
                 style={{ marginTop: 20 }}
                 thumbTintColor="#fff"
@@ -113,11 +114,11 @@ export default function Tdee({ navigation }) {
                 maximumTrackTintColor="#000000"
                 onValueChange={value => setAge(value)}
               />
-              <TextSlider>{age} anos</TextSlider>
             </WrapperItems>
 
             <WrapperItems>
               <Label>Altura:</Label>
+              <TextSlider>{height} cm</TextSlider>
               <Slider
                 style={{ marginTop: 20 }}
                 thumbTintColor="#fff"
@@ -129,11 +130,11 @@ export default function Tdee({ navigation }) {
                 maximumTrackTintColor="#000000"
                 onValueChange={value => setHeight(value)}
               />
-              <TextSlider>{height} cm</TextSlider>
             </WrapperItems>
 
             <WrapperItems>
               <Label>Peso:</Label>
+              <TextSlider>{weight} kg</TextSlider>
               <Slider
                 style={{ marginTop: 20 }}
                 thumbTintColor="#fff"
@@ -145,7 +146,6 @@ export default function Tdee({ navigation }) {
                 maximumTrackTintColor="#000000"
                 onValueChange={value => setWeight(value)}
               />
-              <TextSlider>{weight} kg</TextSlider>
             </WrapperItems>
 
             <WrapperItems>
@@ -164,11 +164,6 @@ export default function Tdee({ navigation }) {
               <SmallText>{Activity[activity].description}</SmallText>
             </WrapperItems>
 
-            {/* <CalculateButton onPress={() => handleCalculate()}>
-              Calcular
-            </CalculateButton>
-            <TextIMC>TMB: {resultBmr} calorias</TextIMC>
-            <TextIMC>TDEE: {result} calorias</TextIMC> */}
             <CalculateButton
               onPress={() =>
                 navigation.navigate('Result', {

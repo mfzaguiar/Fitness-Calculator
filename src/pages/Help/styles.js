@@ -8,13 +8,13 @@ export const Container = styled.ScrollView`
 
 export const Header = styled.View`
   display: flex;
-  background-color: #6d6e71;
+  background-color: rgba(0, 0, 0, 0.76);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
+  padding-left: 10;
+  padding-right: 10;
+  height: 40;
 `;
 
 export const Title = styled.Text`
