@@ -10,27 +10,27 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import BackgroundTemplate from '~/assets/template/Template.png';
-import Background from '~/components/Background';
 import Kcal from '~/assets/icons/calories.png';
 import Book from '~/assets/icons/open-book.png';
 import Water from '~/assets/icons/water.png';
+import RunMan from '~/assets/animations/runman.json';
 
 const styles = StyleSheet.create({
   cardWrapper: {
     flex: 1,
     flexDirection: 'column',
     padding: 25,
-    marginTop: 200,
   },
   cardPhrases: {
     display: 'flex',
     justifyContent: 'center',
     margin: 15,
     borderRadius: 10,
-    height: 165,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    height: 150,
+    backgroundColor: 'rgba(0,0,0,0.76)',
   },
   card: {
     display: 'flex',
@@ -56,21 +56,40 @@ const styles = StyleSheet.create({
   },
   HeaderTitle: {
     lineHeight: 30,
-    fontSize: 26,
+    fontSize: 24,
     color: '#fff',
     padding: 5,
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  cardAnimation: {
+    height: 180,
+  },
 });
 
 const phrasesData = [
-  { text: 'Do something today that your future self will thank you for.' },
   {
-    text: 'The pain you fell today will be de the strenght you fell tomorrow.',
+    text:
+      'Motivação é o que você precisa para começar. Hábito é o que você precisa para continuar.',
   },
-  { text: 'Don`t limit your challenges, challenge your limits.' },
-  { text: 'Don`t limit your challenges, challenge your limits.' },
+  {
+    text: 'A dor que você sente hoje será a sua força amanhã.',
+  },
+  { text: 'O esforço é grande, mas a recompensa é ainda maior.' },
+  { text: 'O corpo alcança o que a mente acredita.' },
+  { text: 'Pequenas mudanças podem fazer grandes diferenças.' },
+  { text: 'Daqui a um ano, você vai desejar ter começado hoje.' },
+  { text: 'Você pode chegar aonde quiser basta ser determinado.' },
+  {
+    text:
+      'Se você não lutar por alguma coisa, será vencido por qualquer coisa.',
+  },
+  {
+    text: 'Bom dia! Levante e vá realizar os seus sonhos!.',
+  },
+  {
+    text: 'Seja sua própria inspiração.',
+  },
 ];
 
 export default function Home({ navigation }) {
@@ -84,39 +103,41 @@ export default function Home({ navigation }) {
   }, [phrases]);
 
   return (
-    <Background>
-      <ImageBackground style={{ flex: 1 }} source={BackgroundTemplate}>
-        <StatusBar barStyle="light-content" backgroundColor="#0b0f1b" />
-        <SafeAreaView>
-          <View style={styles.cardPhrases}>
-            <Text style={styles.HeaderTitle}>{phrasesData[phrases].text}</Text>
-          </View>
-          <View style={styles.cardWrapper}>
-            <TouchableOpacity
-              style={styles.card}
-              onPress={() => navigation.navigate('Tdee')}
-            >
-              <Image source={Kcal} />
-              <Text style={styles.editedtext}>Calcular TDEE</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.card}
-              onPress={() => navigation.navigate('Water')}
-            >
-              <Image source={Water} />
-              <Text style={styles.editedtext}>Calcular Quantidade Água</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.card}
-              onPress={() => navigation.navigate('Historic')}
-            >
-              <Image source={Book} />
-              <Text style={styles.editedtext}>Histórico</Text>
-            </TouchableOpacity>
-          </View>
-        </SafeAreaView>
-      </ImageBackground>
-    </Background>
+    <ImageBackground style={{ flex: 1 }} source={BackgroundTemplate}>
+      <StatusBar barStyle="light-content" backgroundColor="#0b0f1b" />
+      <SafeAreaView>
+        <View style={styles.cardPhrases}>
+          <Text style={styles.HeaderTitle}>{phrasesData[phrases].text}</Text>
+        </View>
+        <View style={styles.cardAnimation}>
+          <Lottie source={RunMan} speed={0.8} loop autoPlay />
+        </View>
+
+        <View style={styles.cardWrapper}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Tdee')}
+          >
+            <Image source={Kcal} />
+            <Text style={styles.editedtext}>Calcular TDEE</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Water')}
+          >
+            <Image source={Water} />
+            <Text style={styles.editedtext}>Calcular Quantidade Água</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Historic')}
+          >
+            <Image source={Book} />
+            <Text style={styles.editedtext}>Histórico</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
