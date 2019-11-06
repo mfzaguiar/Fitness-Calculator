@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { SafeAreaView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import SwitchSelector from 'react-native-switch-selector';
 import Slider from '@react-native-community/slider';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Background from '~/components/Background';
 
@@ -72,7 +73,13 @@ export default function Tdee({ navigation }) {
                 color="#fff"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Help')}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Help', {
+                  type: 'all',
+                })
+              }
+            >
               <Icon
                 name="help-outline"
                 size={28}
@@ -187,3 +194,9 @@ export default function Tdee({ navigation }) {
 Tdee.navigationOptions = () => ({
   header: null,
 });
+
+Tdee.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

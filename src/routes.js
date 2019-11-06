@@ -7,6 +7,7 @@ import Help from '~/pages/Help';
 import Result from '~/pages/Result';
 import Historic from '~/pages/Historic';
 import Water from '~/pages/Water';
+import ResultWater from '~/pages/ResultWater';
 
 const mainNavigation = createStackNavigator(
   {
@@ -14,6 +15,7 @@ const mainNavigation = createStackNavigator(
     Tdee,
     Help,
     Result,
+    ResultWater,
     Historic,
     Water,
   },

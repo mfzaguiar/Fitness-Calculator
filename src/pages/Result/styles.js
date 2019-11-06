@@ -14,7 +14,7 @@ export const Header = styled.View`
   justify-content: space-between;
   padding-left: 10;
   padding-right: 10;
-  height: 40;
+  height: 50;
 `;
 
 export const Box = styled.View`
@@ -67,9 +67,10 @@ export const Label = styled.Text`
   text-align: center;
 `;
 
-export const Title = styled.Text`
+export const TitleMacros = styled.Text`
   top: -45px;
-  font-size: 18px;
+  margin: 2px;
+  font-size: 12px;
   color: #fff;
   font-weight: bold;
   text-align: center;

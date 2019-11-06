@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Lottie from 'lottie-react-native';
 import { SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchSelector from 'react-native-switch-selector';
+import fitness from '~/assets/animations/fitness.json';
 
 import Background from '~/components/Background';
 import {
@@ -16,7 +19,7 @@ import {
   WrapperItems,
   Label,
   ImageStyled,
-  Title,
+  TitleMacros,
 } from './styles';
 
 import Rice from '~/assets/icons/rice.png';
@@ -32,6 +35,8 @@ export default function Result({ navigation }) {
   const [protein, setProtein] = useState([]);
   const [fat, setFat] = useState([]);
 
+  const [loop, setLoop] = useState(true);
+
   const gender = navigation.getParam('gender');
   const age = navigation.getParam('age');
   const factor = navigation.getParam('factor');
@@ -39,12 +44,13 @@ export default function Result({ navigation }) {
   const weight = navigation.getParam('weight');
 
   useEffect(() => {
+    setInterval(() => {
+      setLoop(false);
+    }, 1000);
+
     function handleMacros() {
       if (objective === 0) {
         const newTdee = parseFloat(resultTdee) - 500;
-        //LOWCARB 20/40/40
-        //MODERATE CARB 35/35/30
-        //HIGH CARB 50/30/20
 
         const Vcarb = [];
         const Vprotein = [];
@@ -152,109 +158,143 @@ export default function Result({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Background>
-        <Header>
-          <TouchableOpacity onPress={() => navigation.navigate('Tdee')}>
-            <Icon
-              name="arrow-back"
-              size={28}
-              style={{ margin: 10 }}
-              color="#fff"
-            />
-          </TouchableOpacity>
-        </Header>
-        <Container>
-          <Box>
-            <TouchableOpacity onPress={() => navigation.navigate('Help')}>
-              <Icon name="info" size={20} style={{ margin: 5 }} color="#fff" />
-            </TouchableOpacity>
-            <SmallText>TMB</SmallText>
-            <StyledText>{resultBmr}</StyledText>
-            <SmallText>calorias</SmallText>
-          </Box>
-          <Box>
-            <TouchableOpacity onPress={() => navigation.navigate('Help')}>
-              <Icon name="info" size={20} style={{ margin: 5 }} color="#fff" />
-            </TouchableOpacity>
-            <SmallText>TDEE</SmallText>
-            <StyledText>{resultTdee}</StyledText>
-            <SmallText>calorias</SmallText>
-          </Box>
-        </Container>
-        <ContainerMacros>
-          <Label>Objetivo ?</Label>
-          <SwitchSelector
-            style={{
-              marginTop: 5,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-            }}
-            initial={objective}
-            textColor="#a5a5a5"
-            selectedColor="#fff"
-            buttonColor="rgba(0,0,0,0.8)"
-            borderColor="#eee"
-            onPress={value => {
-              setObjective(value);
-            }}
-            hasPadding
-            options={[
-              { label: 'Emagrecer', value: 0 },
-              { label: 'Manter', value: 1 },
-              { label: 'Ganhar Peso', value: 2 },
-            ]}
+        {loop ? (
+          <Lottie
+            source={fitness}
+            resizeMode="contain"
+            autoPlay
+            loop={loop}
+            speed={0.8}
           />
-          <WrapperMacros>
-            <WrapperItems>
+        ) : (
+          <>
+            <Header>
+              <TouchableOpacity onPress={() => navigation.navigate('Tdee')}>
+                <Icon
+                  name="arrow-back"
+                  size={28}
+                  style={{ margin: 10 }}
+                  color="#fff"
+                />
+              </TouchableOpacity>
+            </Header>
+            <Container>
               <Box>
-                <Title>Low Carb</Title>
-                <ImageStyled source={Rice} />
-                <StyledText>Carboidratos</StyledText>
-                <SmallText>{carb[0]} g</SmallText>
-
-                <ImageStyled source={Steak} />
-                <StyledText>Proteina</StyledText>
-                <SmallText>{protein[0]} g</SmallText>
-
-                <ImageStyled source={Avocado} />
-                <StyledText>Gordura</StyledText>
-                <SmallText>{fat[0]} g</SmallText>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Help', {
+                      type: 'bmr',
+                    })
+                  }
+                >
+                  <Icon
+                    name="info"
+                    size={20}
+                    style={{ margin: 5 }}
+                    color="#fff"
+                  />
+                </TouchableOpacity>
+                <SmallText>BMR</SmallText>
+                <StyledText>{resultBmr}</StyledText>
+                <SmallText>calorias</SmallText>
               </Box>
-            </WrapperItems>
-            <WrapperItems>
               <Box>
-                <Title>Carb Moderado</Title>
-                <ImageStyled source={Rice} />
-                <StyledText>Carboidratos</StyledText>
-                <SmallText>{carb[1]} g</SmallText>
-
-                <ImageStyled source={Steak} />
-                <StyledText>Proteina</StyledText>
-                <SmallText>{protein[1]} g</SmallText>
-
-                <ImageStyled source={Avocado} />
-                <StyledText>Gordura</StyledText>
-                <SmallText>{fat[1]} g</SmallText>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Help', {
+                      type: 'tdee',
+                    })
+                  }
+                >
+                  <Icon
+                    name="info"
+                    size={20}
+                    style={{ margin: 5 }}
+                    color="#fff"
+                  />
+                </TouchableOpacity>
+                <SmallText>TDEE</SmallText>
+                <StyledText>{resultTdee}</StyledText>
+                <SmallText>calorias</SmallText>
               </Box>
-            </WrapperItems>
-            <WrapperItems>
-              <Box>
-                <Title>Alto Carb</Title>
-                <ImageStyled source={Rice} />
-                <StyledText>Carboidratos</StyledText>
-                <SmallText>{carb[2]} g</SmallText>
+            </Container>
+            <ContainerMacros>
+              <Label>Objetivo ?</Label>
+              <SwitchSelector
+                style={{
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 20,
+                  marginRight: 20,
+                }}
+                initial={objective}
+                textColor="#a5a5a5"
+                selectedColor="#fff"
+                buttonColor="rgba(0,0,0,0.8)"
+                borderColor="#eee"
+                onPress={value => {
+                  setObjective(value);
+                }}
+                hasPadding
+                options={[
+                  { label: 'Emagrecer', value: 0 },
+                  { label: 'Manter', value: 1 },
+                  { label: 'Ganhar Peso', value: 2 },
+                ]}
+              />
+              <WrapperMacros>
+                <WrapperItems>
+                  <Box>
+                    <TitleMacros>Low Carb</TitleMacros>
+                    <ImageStyled source={Rice} />
+                    <StyledText>Carboidratos</StyledText>
+                    <SmallText>{carb[0]} g</SmallText>
 
-                <ImageStyled source={Steak} />
-                <StyledText>Proteina</StyledText>
-                <SmallText>{protein[2]} g</SmallText>
+                    <ImageStyled source={Steak} />
+                    <StyledText>Proteina</StyledText>
+                    <SmallText>{protein[0]} g</SmallText>
 
-                <ImageStyled source={Avocado} />
-                <StyledText>Gordura</StyledText>
-                <SmallText>{fat[2]} g</SmallText>
-              </Box>
-            </WrapperItems>
-          </WrapperMacros>
-        </ContainerMacros>
+                    <ImageStyled source={Avocado} />
+                    <StyledText>Gordura</StyledText>
+                    <SmallText>{fat[0]} g</SmallText>
+                  </Box>
+                </WrapperItems>
+                <WrapperItems>
+                  <Box>
+                    <TitleMacros>Carb Moderado</TitleMacros>
+                    <ImageStyled source={Rice} />
+                    <StyledText>Carboidratos</StyledText>
+                    <SmallText>{carb[1]} g</SmallText>
+
+                    <ImageStyled source={Steak} />
+                    <StyledText>Proteina</StyledText>
+                    <SmallText>{protein[1]} g</SmallText>
+
+                    <ImageStyled source={Avocado} />
+                    <StyledText>Gordura</StyledText>
+                    <SmallText>{fat[1]} g</SmallText>
+                  </Box>
+                </WrapperItems>
+                <WrapperItems>
+                  <Box>
+                    <TitleMacros>Alto Carb</TitleMacros>
+                    <ImageStyled source={Rice} />
+                    <StyledText>Carboidratos</StyledText>
+                    <SmallText>{carb[2]} g</SmallText>
+
+                    <ImageStyled source={Steak} />
+                    <StyledText>Proteina</StyledText>
+                    <SmallText>{protein[2]} g</SmallText>
+
+                    <ImageStyled source={Avocado} />
+                    <StyledText>Gordura</StyledText>
+                    <SmallText>{fat[2]} g</SmallText>
+                  </Box>
+                </WrapperItems>
+              </WrapperMacros>
+            </ContainerMacros>
+          </>
+        )}
       </Background>
     </SafeAreaView>
   );
@@ -263,3 +303,10 @@ export default function Result({ navigation }) {
 Result.navigationOptions = () => ({
   header: null,
 });
+
+Result.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
+  }).isRequired,
+};
