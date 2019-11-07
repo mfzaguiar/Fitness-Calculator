@@ -1,9 +1,22 @@
 import styled from 'styled-components/native';
+import { Image } from 'react-native';
 
 export const Container = styled.ScrollView`
   flex: 1;
   padding-left: 10px;
   padding-right: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.76);
+`;
+
+export const WrapperItems = styled.View`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 80px;
+  margin-top: 20px;
 `;
 
 export const Header = styled.View`
@@ -47,4 +60,15 @@ export const SubTitle = styled.Text`
   color: #fff;
   margin-top: 10px;
   margin-bottom: 10px;
+`;
+
+export const ImageStyled = styled(Image)`
+  height: 60px;
+  width: 60px;
+  margin-right: 20px;
+`;
+
+export const Strong = styled.Text`
+  font-weight: bold;
+  font-size: 20px;
 `;

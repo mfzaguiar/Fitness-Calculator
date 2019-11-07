@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Background from '~/components/Background';
-import WaterAnimation from '~/assets/animations/water.json';
+import WaterAnimation from '~/assets/animations/water-white.json';
 
 import { Container, Header, WrapperItems, Title, StyledText } from './styles';
 
@@ -42,8 +42,10 @@ export default function ResultWater({ navigation }) {
             loop
           />
           <WrapperItems>
-            <Title>Você deve consumir diariamente</Title>
-            <StyledText>{water.toFixed() / 1000} ml</StyledText>
+            <Title>Você deve consumir aproximadamente</Title>
+            <StyledText>
+              {((Math.round(water / 50) * 50) / 1000).toFixed(3)} ml
+            </StyledText>
           </WrapperItems>
         </Container>
       </Background>

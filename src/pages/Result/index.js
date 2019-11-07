@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchSelector from 'react-native-switch-selector';
-import fitness from '~/assets/animations/fitness.json';
+import fitness from '~/assets/animations/fitness-white.json';
 
 import Background from '~/components/Background';
 import {
@@ -20,6 +20,7 @@ import {
   Label,
   ImageStyled,
   TitleMacros,
+  TipsButton,
 } from './styles';
 
 import Rice from '~/assets/icons/rice.png';
@@ -293,6 +294,21 @@ export default function Result({ navigation }) {
                 </WrapperItems>
               </WrapperMacros>
             </ContainerMacros>
+            <TipsButton
+              onPress={() =>
+                navigation.navigate('Help', {
+                  type: 'tips',
+                })
+              }
+            >
+              <SmallText>Dicas</SmallText>
+              <Icon
+                name="forward"
+                color="#fff"
+                size={18}
+                style={{ left: 140 }}
+              />
+            </TipsButton>
           </>
         )}
       </Background>

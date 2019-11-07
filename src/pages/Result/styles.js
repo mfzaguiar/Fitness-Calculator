@@ -68,7 +68,7 @@ export const Label = styled.Text`
 `;
 
 export const TitleMacros = styled.Text`
-  top: -45px;
+  top: -30px;
   margin: 2px;
   font-size: 12px;
   color: #fff;
@@ -80,4 +80,14 @@ export const ImageStyled = styled(Image)`
   height: 40px;
   width: 40px;
   margin: 10px 0;
+`;
+
+export const TipsButton = styled.TouchableOpacity`
+  background: rgba(0, 0, 0, 0.76);
+  margin: 5px 20px 5px 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  border-radius: 4px;
 `;

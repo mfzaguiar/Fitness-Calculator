@@ -23,7 +23,7 @@ export const Title = styled.Text`
   font-weight: bold;
   color: #fff;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 0 50px 10px 50px;
 `;
 
 export const StyledText = styled.Text`

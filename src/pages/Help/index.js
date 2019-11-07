@@ -5,13 +5,20 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Background from '~/components/Background';
+import foodScale from '~/assets/icons/food-scale.png';
+import smartphone from '~/assets/icons/smartphone.png';
+import scale from '~/assets/icons/scale.png';
+
 import {
   Container,
+  WrapperItems,
   Header,
   Title,
   SubTitle,
   StyledText,
   ListText,
+  ImageStyled,
+  Strong,
 } from './styles';
 
 const All = () => {
@@ -161,6 +168,37 @@ const Water = () => {
   );
 };
 
+const Tips = () => {
+  return (
+    <>
+      <Title>Ferramentas para acompanhamento de calorias</Title>
+      <WrapperItems>
+        <ImageStyled source={scale} />
+        <StyledText>
+          <Strong>Balança de alimentos:</Strong> Você precisará de uma balança
+          de alimentos para medir com precisão as calorias dos alimentos que
+          está ingerindo.
+        </StyledText>
+      </WrapperItems>
+      <WrapperItems>
+        <ImageStyled source={foodScale} />
+        <StyledText>
+          <Strong>Balança:</Strong> Você precisará de uma balança de banheiro
+          para se pesar periodicamente para poder acompanhar seus resultados.
+        </StyledText>
+      </WrapperItems>
+      <WrapperItems>
+        <ImageStyled source={smartphone} />
+        <StyledText>
+          <Strong>MyFitnessPal App:</Strong> Você precisará inserir tudo o que
+          comer em um aplicativo de rastreamento de calorias como o
+          MyFitnessPal. É gratuito, está disponível para iOS / Android.
+        </StyledText>
+      </WrapperItems>
+    </>
+  );
+};
+
 export default function Help({ navigation }) {
   const showHelp = navigation.getParam('type');
 
@@ -182,6 +220,7 @@ export default function Help({ navigation }) {
           {showHelp === 'tdee' && <Tdee />}
           {showHelp === 'bmr' && <Bmr />}
           {showHelp === 'water' && <Water />}
+          {showHelp === 'tips' && <Tips />}
         </Container>
       </Background>
     </SafeAreaView>
