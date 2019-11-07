@@ -178,6 +178,14 @@ export default function Result({ navigation }) {
                   color="#fff"
                 />
               </TouchableOpacity>
+              <TouchableOpacity onPress={() => {}}>
+                <Icon
+                  name="save"
+                  size={28}
+                  style={{ margin: 10 }}
+                  color="#fff"
+                />
+              </TouchableOpacity>
             </Header>
             <Container>
               <Box>

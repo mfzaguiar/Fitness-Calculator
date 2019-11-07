@@ -64,11 +64,11 @@ export default function Water({ navigation }) {
               />
             </WrapperItems>
             <CalculateButton
-              onPress={() =>
+              onPress={() => {
                 navigation.navigate('ResultWater', {
                   weight,
-                })
-              }
+                });
+              }}
             >
               Calcular
             </CalculateButton>

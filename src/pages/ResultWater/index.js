@@ -21,6 +21,17 @@ export default function ResultWater({ navigation }) {
     calculateWater();
   }, [weight]);
 
+  // async function handleSave() {
+  //   await AsyncStorage.setItem(
+  //     '@MyAppCalc',
+  //     JSON.stringify({
+  //       type: 'water',
+  //       weight,
+  //       date: new Date(),
+  //     })
+  //   );
+  // }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Background>
@@ -32,6 +43,9 @@ export default function ResultWater({ navigation }) {
               style={{ margin: 10 }}
               color="#fff"
             />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {}}>
+            <Icon name="save" size={28} style={{ margin: 10 }} color="#fff" />
           </TouchableOpacity>
         </Header>
         <Container>
