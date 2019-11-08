@@ -24,7 +24,7 @@ Aplicação criada utilizando React Native, com propósito de calcular taxa meta
 - Mensagens motivacionais
 - Histórico
 
-## :framed_picture Screen App
+## :framed_picture: Screen App
 
 <h1 align="center">
   <img alt="Home" title="Fitness Calculator - Home" src=".github/home.png" width="200px" />
