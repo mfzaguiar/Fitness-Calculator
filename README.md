@@ -20,15 +20,15 @@ Aplicação criada utilizando React Native, com propósito de calcular taxa meta
 - Cálculo TDEE
 - Cálculo BMR
 - Cálculo ingestão hidrica
-- Cálculo macronutrientes p/ dieta
+- Cálculo macro nutrientes p/ dieta
 - Mensagens motivacionais
 - Histórico
 
 ## :framed_picture: Screen App
 
 <h1 align="center">
+<img alt="Demo App" title="Demo App" src=".github/demo.gif" width="200px" />
   <img alt="Home" title="Fitness Calculator - Home" src=".github/home.png" width="200px" />
-  <img alt="Info Tdee" title="Fitness Calculator - Info" src=".github/info-tdee.png" width="200px" />
   <img alt="Result Tdee" title="Fitness Calculator - Result Tdee" src=".github/tdee.png" width="200px" />
   <img alt="Result Water" title="Fitness Calculator - Result Water" src=".github/result-water.png" width="200px" />
 </h1>
