@@ -102,7 +102,7 @@ export default function Home({ navigation }) {
             onPress={() => navigation.navigate('Water')}
           >
             <Image source={Water} />
-            <Text style={styles.editedtext}>Calcular Quantidade Água</Text>
+            <Text style={styles.editedtext}>Calcular Ingestão Hidrica</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.card}
