@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontSize: 24,
     color: '#fff',
-    padding: 5,
+    padding: 10,
     textAlign: 'center',
     fontWeight: 'bold',
   },

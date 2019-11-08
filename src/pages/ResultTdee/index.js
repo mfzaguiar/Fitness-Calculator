@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Lottie from 'lottie-react-native';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchSelector from 'react-native-switch-selector';
 import fitness from '~/assets/animations/fitness-white.json';
+
+import { handleStore } from '~/helpers/storeHistoric';
 
 import Background from '~/components/Background';
 import {
@@ -27,7 +29,7 @@ import Rice from '~/assets/icons/rice.png';
 import Avocado from '~/assets/icons/avocado.png';
 import Steak from '~/assets/icons/steak.png';
 
-export default function Result({ navigation }) {
+export default function ResultTdee({ navigation }) {
   const [resultTdee, setResultTdee] = useState('');
   const [resultBmr, setResultBmr] = useState('');
   const [objective, setObjective] = useState(0);
@@ -156,6 +158,34 @@ export default function Result({ navigation }) {
     handleCalculate();
   }, [resultTdee, height, weight, age, factor, gender, objective]);
 
+  async function handleSave() {
+    const item = {
+      type: 'tdee',
+      gender,
+      age,
+      factor,
+      height,
+      weight,
+      date: new Date(),
+    };
+
+    Alert.alert(
+      'Salvar Resultado',
+      'Deseja salvar ?',
+      [
+        { text: 'Cancelar' },
+        {
+          text: 'Sim',
+          onPress: () => {
+            handleStore(item);
+            navigation.navigate('Home');
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Background>
@@ -170,7 +200,7 @@ export default function Result({ navigation }) {
         ) : (
           <>
             <Header>
-              <TouchableOpacity onPress={() => navigation.navigate('Tdee')}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Icon
                   name="arrow-back"
                   size={28}
@@ -178,7 +208,7 @@ export default function Result({ navigation }) {
                   color="#fff"
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => handleSave()}>
                 <Icon
                   name="save"
                   size={28}
@@ -324,13 +354,14 @@ export default function Result({ navigation }) {
   );
 }
 
-Result.navigationOptions = () => ({
+ResultTdee.navigationOptions = () => ({
   header: null,
 });
 
-Result.propTypes = {
+ResultTdee.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
     getParam: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
   }).isRequired,
 };

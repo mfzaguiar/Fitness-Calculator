@@ -21,6 +21,12 @@ export const HeaderTitle = styled.Text`
   margin-left: 10px;
 `;
 
+export const WrapperLoading = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const HistoricItem = styled.TouchableOpacity`
   margin: 3px 10px;
   padding: 0 10px;

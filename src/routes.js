@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Home from '~/pages/Home';
 import Tdee from '~/pages/Tdee';
 import Help from '~/pages/Help';
-import Result from '~/pages/Result';
+import ResultTdee from '~/pages/ResultTdee';
 import Historic from '~/pages/Historic';
 import Water from '~/pages/Water';
 import ResultWater from '~/pages/ResultWater';
@@ -14,7 +14,7 @@ const mainNavigation = createStackNavigator(
     Home,
     Tdee,
     Help,
-    Result,
+    ResultTdee,
     ResultWater,
     Historic,
     Water,

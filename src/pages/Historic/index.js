@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, FlatList, AsyncStorage } from 'react-native';
+import { SafeAreaView, FlatList, Alert, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Lottie from 'lottie-react-native';
 
 import Background from '~/components/Background';
 
 import water from '~/assets/icons/water.png';
 import calories from '~/assets/icons/calories.png';
+import empty from '~/assets/animations/search-empty.json';
 
 import {
   Container,
@@ -16,37 +19,36 @@ import {
   HistoricItem,
   StyledText,
   StyledImage,
+  WrapperLoading,
 } from './styles';
 
-const data = [
-  {
-    type: 'water',
-    date: new Date(),
-  },
-  {
-    type: 'tdee',
-    date: new Date(),
-  },
-  {
-    type: 'water',
-    date: new Date(),
-  },
-];
-
 export default function Historic({ navigation }) {
-  // const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   async function handleLoadData() {
-  //     try {
-  //       const responseData = await AsyncStorage.getItem('@MyAppCalc');
-  //       if (responseData !== null) {
-  //         console.log(responseData);
-  //       }
-  //     } catch (error) {}
-  //   }
-  //   handleLoadData();
-  // }, []);
+  useEffect(() => {
+    async function handleLoadData() {
+      try {
+        const responseData = await AsyncStorage.getItem('Historic');
+        if (responseData !== null) {
+          setData(JSON.parse(responseData));
+        }
+        setLoading(false);
+      } catch (error) {
+        Alert.alert(error);
+        setLoading(false);
+      }
+    }
+    handleLoadData();
+  }, []);
+
+  function handleNavigation(item) {
+    if (item.type === 'water') {
+      navigation.navigate('ResultWater', { ...item });
+    } else {
+      navigation.navigate('ResultTdee', { ...item });
+    }
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -64,19 +66,34 @@ export default function Historic({ navigation }) {
             <HeaderTitle>Histórico</HeaderTitle>
           </Header>
 
-          <FlatList
-            data={data}
-            keyExtractor={item => String(item.date)}
-            renderItem={({ item }) => (
-              <HistoricItem>
-                <StyledImage
-                  source={item.type === 'water' ? water : calories}
-                />
-                <StyledText>Data: {new Date().toLocaleDateString()}</StyledText>
-                <Icon name="keyboard-arrow-right" color="#fff" size={30} />
-              </HistoricItem>
-            )}
-          />
+          {loading ? (
+            <WrapperLoading>
+              <ActivityIndicator size="large" color="#fff" />
+            </WrapperLoading>
+          ) : (
+            <>
+              {data.length <= 0 && (
+                <WrapperLoading>
+                  <Lottie source={empty} autoPlay loop />
+                </WrapperLoading>
+              )}
+              <FlatList
+                data={data}
+                keyExtractor={item => item.date}
+                renderItem={({ item }) => (
+                  <HistoricItem onPress={() => handleNavigation(item)}>
+                    <StyledImage
+                      source={item.type === 'water' ? water : calories}
+                    />
+                    <StyledText>
+                      Data: {new Date().toLocaleDateString()}
+                    </StyledText>
+                    <Icon name="keyboard-arrow-right" color="#fff" size={30} />
+                  </HistoricItem>
+                )}
+              />
+            </>
+          )}
         </Container>
       </Background>
     </SafeAreaView>
@@ -90,5 +107,6 @@ Historic.navigationOptions = {
 Historic.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
   }).isRequired,
 };

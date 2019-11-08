@@ -173,7 +173,7 @@ export default function Tdee({ navigation }) {
 
             <CalculateButton
               onPress={() =>
-                navigation.navigate('Result', {
+                navigation.navigate('ResultTdee', {
                   gender,
                   age,
                   height,
